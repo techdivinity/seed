@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -104,7 +106,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © TechDivinity.
+                    2015 Â© TechDivinity.
                 </footer>
 
             </div>
