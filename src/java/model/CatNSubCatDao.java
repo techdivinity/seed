@@ -43,10 +43,11 @@ public class CatNSubCatDao
             stmt1.close();rs1.close();
             
             String sql2="SELECT name FROM subcategory WHERE catID in (select catID from category where name=?)";
+            stmt2 = con.prepareStatement(sql2);
             for(int i=0;i<cats.size();i++)
             {           
                 
-                stmt2 = con.prepareStatement(sql2);
+                
                 stmt2.setString(1,cats.get(i).get(0));
                 rs2 = stmt2.executeQuery(sql2); 
                 while(rs2.next()) 
