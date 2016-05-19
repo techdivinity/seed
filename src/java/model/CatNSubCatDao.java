@@ -7,6 +7,7 @@ package model;
 
 import com.DBConnection;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -25,7 +26,7 @@ public class CatNSubCatDao
         Connection con = null;
         Statement stmt1 = null;
         ResultSet rs1 = null;
-        Statement stmt2 = null;
+        PreparedStatement stmt2=null;
         ResultSet rs2 = null;
 
         try
@@ -41,11 +42,12 @@ public class CatNSubCatDao
              }
             stmt1.close();rs1.close();
             
-            
+            String sql2="SELECT name FROM subcategory WHERE catID in (select catID from category where name=?)";
             for(int i=0;i<cats.size();i++)
             {           
-                String sql2="SELECT name FROM subcategory WHERE catID in (select catID from category where name='"+cats.get(i).get(0)+"')";
-                stmt2 = con.createStatement(); 
+                
+                stmt2 = con.prepareStatement(sql2);
+                stmt2.setString(1,cats.get(i).get(0));
                 rs2 = stmt2.executeQuery(sql2); 
                 while(rs2.next()) 
                 {
