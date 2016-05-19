@@ -36,7 +36,10 @@ public class Category extends HttpServlet {
                 }catch(Exception e){}
             }
             out.print("<br>");
-        }        
+        }  
+            
+//            request.setAttribute("catsInfo", cats);
+//            request.getRequestDispatcher("category.jsp").forward(request, response);
         
         }catch(Exception e)
         {
