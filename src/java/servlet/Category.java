@@ -26,20 +26,21 @@ public class Category extends HttpServlet {
         PrintWriter out = response.getWriter();
         try{
         CatNSubCatDao dao=new CatNSubCatDao();
+//        dao.getCatInfo();
         ArrayList<ArrayList<String>> cats=dao.getCatInfo();
-        for(int i=0;i<cats.size();i++)
-        {
-            for(int j=0;j<cats.get(i).size();j++)
-            {
-                try{
-                out.print(cats.get(i).get(j)+" ");
-                }catch(Exception e){}
-            }
-            out.print("<br>");
-        }  
+//        for(int i=0;i<cats.size();i++)
+//        {
+//            for(int j=0;j<cats.get(i).size();j++)
+//            {
+//                try{
+//                out.print(cats.get(i).get(j)+" ");
+//                }catch(Exception e){}
+//            }
+//            out.print("<br>");
+//        }  
             
-//            request.setAttribute("catsInfo", cats);
-//            request.getRequestDispatcher("category.jsp").forward(request, response);
+            request.setAttribute("catsInfo", cats);
+            request.getRequestDispatcher("category.jsp").forward(request, response);
         
         }catch(Exception e)
         {
