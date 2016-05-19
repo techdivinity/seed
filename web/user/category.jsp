@@ -50,13 +50,13 @@
                                     
                         <div class="card-box" >
                             <div class="table-responsive">
-                                <c:out value="${requestScope.hiIndex}" />
-                                <c:forEach var="item" items="${requestScope.catsInfo}">
-                                    <c:forEach var="itemVal" items="${item}" >
-                                    <c:out value="${itemVal}" />
-                                    </c:forEach>
-                                    <br>
-                                </c:forEach>
+                                <%--<c:out value="${requestScope.hiIndex}" />--%>
+                                <%--<c:forEach var="item" items="${requestScope.catsInfo}">--%>
+                                    <%--<c:forEach var="itemVal" items="${item}" >--%>
+                                    <%--<c:out value="${itemVal}" />--%>
+                                    <%--</c:forEach>--%>
+                                    <!--<br>-->
+                                <%--</c:forEach>--%>
                                 
                                 <table class="table table-hover mails m-0 table table-actions-bar">
                                     <tr style="background: lightyellow">
