@@ -50,27 +50,32 @@
                                     
                         <div class="card-box" >
                             <div class="table-responsive">
-                                
-                                <%--<c:forEach var="item" items="${requestScope.catsInfo}">--%>
-                                    <%--<c:forEach var="itemVal" items="${item}">--%>
-                                    <%--<c:out value="${itemVal}" />--%>
-                                    <%--</c:forEach>--%>
+                                <c:out value="${requestScope.hiIndex}" />
+                                <c:forEach var="item" items="${requestScope.catsInfo}">
+                                    <c:forEach var="itemVal" items="${item}" >
+                                    <c:out value="${itemVal}" />
+                                    </c:forEach>
                                     <br>
-                                <%--</c:forEach>--%>
-                                
-                                <c:out value="${requestScope.catsInfo[1][1]}" />
+                                </c:forEach>
                                 
                                 <table class="table table-hover mails m-0 table table-actions-bar">
                                     <tr style="background: lightyellow">
-                                        <th style="width: 25%">PESTICIDES</th>
-                                        <th style="width: 25%">SEEDS</th><th style="width: 25%">FERTILIZERS</th><th style="width: 25%">OTHER</th>
+                                        <c:forEach var="item" items="${requestScope.catsInfo}" varStatus="status">
+                                            <th>
+                                                <c:out value="${requestScope.catsInfo[status.count-1][0]}" />
+                                            </th>
+                                        </c:forEach>
                                     </tr>
-                                    <tr>
-                                        <td>ABC</td><td>ABC</td><td>ABC</td><td>ABC</td>
-                                    </tr>
-                                    <tr>
-                                        <td>ABC</td><td></td><td>ABC</td><td>ABC</td>
-                                    </tr>
+                                    <c:forEach var="item" varStatus="i" begin="1" end="${requestScope.hiIndex-1}">
+                                        <tr>
+                                        <c:forEach var="item" items="${requestScope.catsInfo}" varStatus="j" >
+                                                <td>
+                                                    <c:out value="${requestScope.catsInfo[j.count-1][i.count]}" />
+                                                </td>
+                                            
+                                        </c:forEach>
+                                            </tr>
+                                    </c:forEach>
                                 </table>
 
                             </div>
@@ -133,10 +138,7 @@
 			<div class="form-group">
                             <label for="name">Select Category</label>
                             <select name="cat" class="form-control" id="cat">
-                                <option value="1">Pesticides</option>
-                                <option value="2">Seeds</option>
-                                <option value="3">Fertilizers</option>
-                                <option value="4">Other</option>
+                                
                             </select>
                             
                         </div>                        

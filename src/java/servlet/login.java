@@ -40,7 +40,7 @@ public class login extends HttpServlet {
             if(userValidate.equals("SUCCESS")) //If function returns success string then user will be rooted to Home page
             {
                 session.setAttribute("user", userName);
-                response.sendRedirect("user/items.jsp");
+                response.sendRedirect("user/home.jsp");
             }
             else
             {

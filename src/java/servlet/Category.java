@@ -5,6 +5,7 @@
  */
 package servlet;
 
+import com.ArrayListOpration;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -28,6 +29,8 @@ public class Category extends HttpServlet {
         CatNSubCatDao dao=new CatNSubCatDao();
 //        dao.getCatInfo();
         ArrayList<ArrayList<String>> cats=dao.getCatInfo();
+        int hiIndex=new ArrayListOpration().getHighestIndexOfLists(cats);
+//        out.print(hiIndex);
 //        for(int i=0;i<cats.size();i++)
 //        {
 //            for(int j=0;j<cats.get(i).size();j++)
@@ -38,7 +41,7 @@ public class Category extends HttpServlet {
 //            }
 //            out.print("<br>");
 //        }  
-            
+            request.setAttribute("hiIndex", hiIndex);
             request.setAttribute("catsInfo", cats);
             request.getRequestDispatcher("category.jsp").forward(request, response);
         

@@ -51,12 +51,50 @@ function changePerResult(){
 
 function show(id)
 {
+    if(id=='one'){populateCatBox()}
     document.getElementById("one").style.display='none';
     document.getElementById("two").style.display='none';
     document.getElementById("three").style.display='none';
     document.getElementById("four").style.display='none';
     document.getElementById(id).style.display='block';
 }
+
+function populateCatBox()
+{
+//    alert();
+//    var catdrop=document.getElementById("cat");
+//    catdrop.innerHTML='<option value="1">ABC</option>';
+    
+    var url="../CatDropPopulate";  
+
+    if(window.XMLHttpRequest)
+    {  request=new XMLHttpRequest();  }  
+    else if(window.ActiveXObject)
+    {  request=new ActiveXObject("Microsoft.XMLHTTP");  }  
+
+    try
+    {  
+        request.onreadystatechange=resuilOfPopulateCatBox;  
+        request.open("GET",url,true);  
+        request.send();  
+    }catch(e){alert("Unable to connect to server");}
+    
+}
+function resuilOfPopulateCatBox()
+{
+     if(request.readyState==4)
+    {  
+        var val=request.responseText;
+        var v1=new String(val);
+        v1=v1.trim();
+        
+        
+    }  
+}
+
+
+
+
 function showCat(id)
 { 
     document.getElementById("oneCat").style.display='none';
