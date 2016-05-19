@@ -51,11 +51,14 @@
                         <div class="card-box" >
                             <div class="table-responsive">
                                 
-                                <c:forEach var="item" items="${sessionScope.catsInfo}">
-                                    <c:out value="${item}" />
-                                </c:forEach>
+                                <%--<c:forEach var="item" items="${requestScope.catsInfo}">--%>
+                                    <%--<c:forEach var="itemVal" items="${item}">--%>
+                                    <%--<c:out value="${itemVal}" />--%>
+                                    <%--</c:forEach>--%>
+                                    <br>
+                                <%--</c:forEach>--%>
                                 
-                                
+                                <c:out value="${requestScope.catsInfo[1][1]}" />
                                 
                                 <table class="table table-hover mails m-0 table table-actions-bar">
                                     <tr style="background: lightyellow">
