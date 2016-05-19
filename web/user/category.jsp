@@ -1,3 +1,5 @@
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
     <head>
@@ -47,10 +49,13 @@
                         </div>
                                     
                         <div class="card-box" >
-                            <form action="Category">
-                                <input type="submit"/>
-                            </form>
                             <div class="table-responsive">
+                                
+                                <c:forEach var="item" items="${sessionScope.catsInfo}">
+                                    <c:out value="${item}" />
+                                </c:forEach>
+                                
+                                
                                 
                                 <table class="table table-hover mails m-0 table table-actions-bar">
                                     <tr style="background: lightyellow">
@@ -73,7 +78,7 @@
                 </div> <!-- content -->
 
                 <footer class="footer text-right">
-                    2015 © TechDivinity.
+                    2015 Â© TechDivinity.
                 </footer>
 
             </div>
