@@ -46,10 +46,10 @@ public class CatNSubCatDao
             stmt2 = con.prepareStatement(sql2);
             for(int i=0;i<cats.size();i++)
             {           
-                
+               
                 
                 stmt2.setString(1,cats.get(i).get(0));
-                rs2 = stmt2.executeQuery(sql2); 
+                rs2 = stmt2.executeQuery(); 
                 while(rs2.next()) 
                 {
                  cats.get(i).add(rs2.getString("name"));
