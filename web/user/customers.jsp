@@ -44,61 +44,79 @@
                         </div>
                                     
                         		<div class="card-box" >
-                        			<div class="row" >
+<!--                        			<div class="row" >
 			                        	<div class="col-sm-8">
 			                        		<form role="form">
 			                                    <div class="form-group contact-search m-b-30">
 			                                    	<input type="text" id="search" class="form-control" placeholder="Search...">
 			                                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-			                                    </div> <!-- form-group -->
+			                                    </div>  form-group 
 			                                </form>
 			                        	</div>
 			                        	<div class="col-sm-4">
 			                        		 <a href="#custom-modal"  class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" 
 			                                                    	data-overlaySpeed="200" data-overlayColor="#36404a" ><i class="md md-add"></i> Add Customer</a>
 			                        	</div>	
-		                        </div>
-			                        
-                        			<div class="table-responsive">
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
-                                        <table class="table table-hover mails m-0 table table-actions-bar">
-                                        	<thead>
-                                                <th>abc</th>    <th>abc</th> <th>abc</th>  			
-						</thead>
-											
-                                            <tbody>
-                                            <td> cdfghsg fgsd fsd sd gsdf tryurtyu rty try rty rtyurtu trujrt tg sdfg sdfg</td><td> cdfghdfgdfgdtyrt r r uytury tryu rtyu rty utr urtyu rtyu rtyu rtyu  dfg dsf gdf gdf gdfs gdfg dsf gdsfg</td><td> cdfghdfgd gsd sd gsdf gsd gsdg sdg</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
-                                            <tbody>
-                                            <td> cdfgh</td><td> cdfgh</td><td> cdfgh</td>
-                                            </tbody>
+		                        </div>-->
+
+                        <div class="custom-modal-text text-left" id="addCustSuccess">
+			        <!--<form role="form">-->
+                                <c:if test="${param.success eq 1}">
+                                        <div> success </div>
+                                       </c:if>
+                                <div class="form-group">
+                                         <form action="../AddCust" method="POST" >
+			        	<div class="form-group">
                                             
-                                        </table>
-                                    </div>
+                            <label for="name">FirstName</label>
+                            <input type="text" class="form-control" name="firstname" id="firstname" placeholder="Enter name">
+                        </div>                        
+                        
+                        <div class="form-group">
+                            <label for="name">LastName</label>
+                            <input type="text" class="form-control" name="lastname" id="lastname" placeholder="Enter number">
+                        </div>
+                                    
+                        
+                                 
+                        <div class="form-group">
+                            <label for="name">Phone No</label>
+                            <input type="number" class="form-control" name="phnumber" id="phnumber" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">Address</label>
+                            <textarea name="address" class="form-control" id="address" placeholder="Enter Address" rows="4" cols="20"></textarea>
+                            <!--<input type="text" class="form-control" id="position" placeholder="Enter number">-->
+                        </div>
+                        <div class="form-group">
+                            <label for="name">City</label>
+                            <input type="text" class="form-control" name="city" id="city" placeholder="Enter City Name">
+                        </div>
+
+                        
+                        <div class="form-group">
+                            <label for="name">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="name">TINNO</label>
+                            <input type="text" class="form-control" name="tinno" id="tinno" placeholder="Enter Tin No">
+                        </div>
+                         <div class="form-group">
+                            <label for="name">CSTNO</label>
+                            <input type="text" class="form-control" name="cstno" id="cstno" placeholder="Enter Cst No">
+                        </div>
+
+                        <button type="submit"  class="btn btn-default waves-effect waves-light">Save</button>
+                        <button type="button" onclick="Custombox.close();" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
+                            </form>
+                                    <c:if test="${param.success eq 1}">
+                                        <div> success </div>
+                                       </c:if>
+                                </div>
+
+                    <!--</form>-->
+			    </div>
              		</div>
                            
                     </div> <!-- container -->
@@ -111,41 +129,58 @@
             
             
             <!-- Modal -->
-			<div id="custom-modal" class="modal-demo" >
+<!--			<div id="custom-modal" class="modal-demo" >
 			    <button type="button" class="close" onclick="Custombox.close();">
 			        <span>&times;</span><span class="sr-only">Close</span>
 			    </button>
 			    <h4 class="custom-modal-title">Add Customer</h4>
 			    <div class="custom-modal-text text-left" id="addCustSuccess">
-			        <!--<form role="form">-->
+			        <form role="form">
 			        	<div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter name">
+                            <label for="name">FirstName</label>
+                            <input type="text" class="form-control" id="firstname" placeholder="Enter name">
                         </div>                        
                         
                         <div class="form-group">
-                            <label for="position">Contact number</label>
-                            <input type="text" class="form-control" id="position" placeholder="Enter number">
+                            <label for="position">LastName</label>
+                            <input type="text" class="form-control" id="lastname" placeholder="Enter number">
                         </div>
                                     
+                        
+                                 
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Phone No</label>
+                            <input type="email" class="form-control" id="phnumber" placeholder="Enter email">
+                        </div>
                         <div class="form-group">
                             <label for="position">Address</label>
-                            <textarea name="address" class="form-control" id="position" placeholder="Enter Address" rows="4" cols="20"></textarea>
-                            <!--<input type="text" class="form-control" id="position" placeholder="Enter number">-->
+                            <textarea name="address" class="form-control" id="address" placeholder="Enter Address" rows="4" cols="20"></textarea>
+                            <input type="text" class="form-control" id="position" placeholder="Enter number">
                         </div>
-                        
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                            <label for="exampleInputEmail1">City</label>
+                            <input type="email" class="form-control" id="city" placeholder="Enter email">
                         </div>
 
                         
-                        
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email">
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">TINNO</label>
+                            <input type="email" class="form-control" id="tinno" placeholder="Enter email">
+                        </div>
+                         <div class="form-group">
+                            <label for="exampleInputEmail1">CSTNO</label>
+                            <input type="email" class="form-control" id="cstno" placeholder="Enter email">
+                        </div>
+
                         <button type="button" onclick="addCustomer()" class="btn btn-default waves-effect waves-light">Save</button>
                         <button type="button" onclick="Custombox.close();" class="btn btn-danger waves-effect waves-light m-l-10">Cancel</button>
-                    <!--</form>-->
+                    </form>
 			    </div>
-			</div>
+			</div>-->
             
             
             <!-- ============================================================== -->
