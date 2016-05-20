@@ -1,8 +1,7 @@
 function poupateSubCat()
 {
     var cat=document.getElementById("cat").value;
-    alert(cat);
-     var url="../SubCatDropPopulate?cat="+cat;  
+    var url="../SubCatDropPopulate?cat="+cat;  
 
     if(window.XMLHttpRequest)
     {  request=new XMLHttpRequest();  }  
