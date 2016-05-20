@@ -33,7 +33,7 @@
 
 
     <body class="fixed-left">
-
+        <jsp:include page="UserChk.jsp" />
         <!-- Begin page -->
         <div id="wrapper">
             <jsp:include page="topper.jsp" />
