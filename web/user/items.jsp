@@ -19,7 +19,7 @@
         <link href="../assets/css/responsive.css" rel="stylesheet" type="text/css" />
         <script src="../assets/js/modernizr.min.js"></script>
         
-        <script type="text/javascript" src="../js/Customer.js"></script>
+        <script type="text/javascript" src="../js/Item.js"></script>
         <script type="text/javascript" src="../js/stopBack.js"></script>
  
     </head>
@@ -43,28 +43,43 @@
                                 <h4 class="page-title">Items</h4><br>
                             </div>
                         </div>
+                        
+                        <jsp:useBean id="test" class="model.CatPopDao"/>
+                        <c:set var="alphabet" value="${test.gatOption()}" scope="page" />
+                        <c:out value="${alphabet}"/>
                                     
                         		<div class="card-box" >
+                                              
                         			<div class="row" >
-			                        	<div class="col-sm-8">
+                                                    <select name="cat" id="cat" onchange="poupateSubCat()">
+                                                    <c:forEach var="item" items="${alphabet}" varStatus="status" step="2">
+                                                        <option value="${alphabet[status.index ]}">
+                                                            <c:out value="${alphabet[status.index+1 ]}" />
+                                                        </option>
+                                                    </c:forEach>
+                                                    </select> 
+                                         
+                                            <select name="subcat" id="subcat">
+                                            </select>
+                                                    
+                                                    Name : <input type="text" name="name">
+                                        
+<!--			                        	<div class="col-sm-8">
 			                        		<form role="form">
 			                                    <div class="form-group contact-search m-b-30">
 			                                    	<input type="text" id="search" class="form-control" placeholder="Search...">
 			                                        <button type="submit" class="btn btn-white"><i class="fa fa-search"></i></button>
-			                                    </div> <!-- form-group -->
+			                                    </div>  form-group 
 			                                </form>
 			                        	</div>
 			                        	<div class="col-sm-4">
 			                        		 <a href="#custom-modal"  class="btn btn-default btn-md waves-effect waves-light m-b-30" data-animation="fadein" data-plugin="custommodal" 
 			                                                    	data-overlaySpeed="200" data-overlayColor="#36404a" ><i class="md md-add"></i> Add Customer</a>
-			                        	</div>	
+			                        	</div>	-->
 		                        </div>
 			                        
                         			<div class="table-responsive">
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
-                                                  Area Of Middle Content
+                                                  
 
                                     </div>
              		</div>
@@ -86,7 +101,7 @@
 			    <h4 class="custom-modal-title">Add Customer</h4>
 			    <div class="custom-modal-text text-left" id="addCustSuccess">
 			        <form role="form">
-			        	<div class="form-group">
+			<div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" class="form-control" id="name" placeholder="Enter name">
                         </div>                        

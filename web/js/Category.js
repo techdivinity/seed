@@ -84,6 +84,7 @@ function resuilOfPopulateCatBox()
         var v1=new String(val);
         v1=v1.trim();
         var res = v1.split("/");
+        catdrop.innerHTML='';
         for(var i=0;i<res.length-1;i++)
         {
             var vals=res[i].split("-");
