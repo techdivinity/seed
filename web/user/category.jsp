@@ -85,9 +85,7 @@
                                
                 </div> <!-- content -->
 
-                <footer class="footer text-right">
-                    2015 © TechDivinity.
-                </footer>
+                <jsp:include page="footer.jsp"/>
 
             </div>
             

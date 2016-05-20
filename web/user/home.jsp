@@ -291,9 +291,7 @@
                                
                 </div> <!-- content -->
 
-                <footer class="footer text-right">
-                    2015 © Ubold.
-                </footer>
+                <jsp:include page="footer.jsp"/>
 
             </div>
             

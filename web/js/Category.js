@@ -61,10 +61,6 @@ function show(id)
 
 function populateCatBox()
 {
-//    alert();
-//    var catdrop=document.getElementById("cat");
-//    catdrop.innerHTML='<option value="1">ABC</option>';
-    
     var url="../CatDropPopulate";  
 
     if(window.XMLHttpRequest)
@@ -83,12 +79,16 @@ function populateCatBox()
 function resuilOfPopulateCatBox()
 {
      if(request.readyState==4)
-    {  
+    {  var catdrop=document.getElementById("cat");
         var val=request.responseText;
         var v1=new String(val);
         v1=v1.trim();
-        
-        
+        var res = v1.split("/");
+        for(var i=0;i<res.length-1;i++)
+        {
+            var vals=res[i].split("-");
+            catdrop.insertAdjacentHTML('beforeend','<option value="'+vals[0]+'">'+vals[1]+'</option>');
+        }
     }  
 }
 

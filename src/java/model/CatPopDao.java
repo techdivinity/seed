@@ -12,6 +12,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import javax.naming.NamingException;
 
 /**
@@ -19,10 +20,11 @@ import javax.naming.NamingException;
  * @author divinity
  */
 public class CatPopDao {
- public String gatOption() throws NamingException, NoSuchAlgorithmException, UnsupportedEncodingException, SQLException
+ public ArrayList<String> gatOption() throws NamingException, NoSuchAlgorithmException, UnsupportedEncodingException, SQLException
  {
     
-     
+    ArrayList<String> catsInfo=new ArrayList<String>();
+    
     Connection con = null;
     Statement statement = null;
     ResultSet resultSet = null;
@@ -34,16 +36,17 @@ public class CatPopDao {
         resultSet = statement.executeQuery("select * from category");
          while(resultSet.next()) 
          {
-           
+           catsInfo.add(resultSet.getString("catID"));
+           catsInfo.add(resultSet.getString("name"));
          }
         
         statement.close();resultSet.close();con.close();
-        return "SUCCESS"; 
+        return catsInfo; 
      }
      catch(SQLException e)
      {
         try{ con.close();}catch(Exception e1){}
-        return String.valueOf(e);
+        return null;
 //        return "ERROR";
      }
      
