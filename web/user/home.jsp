@@ -28,6 +28,7 @@
         <![endif]-->
 
         <script src="../assets/js/modernizr.min.js"></script>
+        <script type="text/javascript" src="../js/stopBack.js"></script>
         
     </head>
 
