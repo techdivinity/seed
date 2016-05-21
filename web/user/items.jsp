@@ -28,11 +28,13 @@
             window.onload = function () {
             dp_cal  = new Epoch('epoch_popup','popup',document.getElementById('popup_container'));
             dp_cal  = new Epoch('epoch_popup','popup',document.getElementById('popup_container1'));
+            $('#link').click();
             };
+
             </script>
             
     </head>
-    <body class="fixed-left">
+    <body class="fixed-left" >
 
 <jsp:include page="UserChk.jsp" />
         <!-- Begin page -->
@@ -45,6 +47,18 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
+                        <c:choose>
+                            <c:when test= "${sessionScope.msg=='SUCCESS'}">
+                                <a id="link" href="#success-modal"  data-animation="fadein" data-plugin="custommodal" 
+                                       data-overlaySpeed="200" data-overlayColor="#36404a" ></a>
+                            </c:when>
+                            <c:when test= "${sessionScope.msg=='ERROR'}">
+                                <a id="link" href="#error-modal"  data-animation="fadein" data-plugin="custommodal" 
+                                       data-overlaySpeed="200" data-overlayColor="#36404a" ></a>
+                            </c:when>
+                            <c:otherwise></c:otherwise>
+                        </c:choose>
+                                <c:remove var="msg" scope="session" />
 
                         <!-- Page-Title -->
                         <div class="row" >
@@ -60,7 +74,7 @@
                                               
                         			<div class="row" >
                                                     <div class="custom-modal-text text-left" id="addCustSuccess">
-                                                        <form action=""method="post">
+                                                        <form action="AddItem"method="post">
                                                             <div style="width: 50%;float: left;padding-right: 2px"> 
                                                                 <div class="form-group">
                                                                     <label for="name">Select Category <font color="red">*</font></label>
@@ -89,29 +103,29 @@
                                                             <div style="width: 50%;float: left;padding-right: 2px">
                                                                 <div class="form-group">
                                                                     <label for="name">Paket Size</label>
-                                                                    <input type="text" name="name" class="form-control" required/>
+                                                                    <input type="text" name="pktsize" class="form-control" />
                                                                 </div> 
                                                                 <div class="form-group">
                                                                     <label for="name">Manufacturing Date</label>
-                                                                    <input type="text" id="popup_container" name="price" step="0.01" class="form-control" required readonly="readonly"/>
+                                                                    <input type="text" name="mfgdate" id="popup_container" name="price" step="0.01" class="form-control"  readonly="readonly"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="name">Price (Per Packet)</label>
-                                                                    <input type="number" name="price" step="0.01" class="form-control" required/>
+                                                                    <input type="number" name="price" step="0.01" class="form-control" />
                                                                 </div>
                                                             </div>
                                                             <div style="width: 50%;float: right;padding-left: 2px">
                                                                 <div class="form-group">
                                                                     <label for="name">Batch</label>
-                                                                    <input type="text" name="name" class="form-control" required/>
+                                                                    <input type="text" name="batch" class="form-control" />
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="name">Expiring Date</label>
-                                                                    <input type="text" id="popup_container1" name="price" step="0.01" class="form-control" required readonly="readonly"/>
+                                                                    <input type="text" name="expdate" id="popup_container1" name="price" step="0.01" class="form-control"  readonly="readonly"/>
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label for="name">Total Qnty(In Packets)</label>
-                                                                    <input type="number" name="price" min="0" class="form-control" required/>
+                                                                    <input type="number" name="qnty" min="0" class="form-control" />
                                                                 </div>
                                                             </div>
                                                         
@@ -136,7 +150,25 @@
                 <jsp:include page="footer.jsp"/>
 
             </div>
-            
+            <!-- Modal -->
+                <div id="success-modal" class="modal-demo" >
+			    <button type="button" class="close" onclick="Custombox.close();">
+			        <span>&times;</span><span class="sr-only">Close</span>
+			    </button>
+                                <h4 class="custom-modal-title"></h4>
+                                <br><br>
+                                <img src="../icon/done32.png"/> <b><font color="green">Item Added Successfully.</font></b><br><br>
+                                <button type="button" onclick="Custombox.close();" class="btn btn-default waves-effect waves-light">   OK   </button><br><br>
+                </div>
+                <div id="error-modal" class="modal-demo" >
+			    <button type="button" class="close" onclick="Custombox.close();">
+			        <span>&times;</span><span class="sr-only">Close</span>
+			    </button>
+                                <h4 class="custom-modal-title"></h4>
+                                <br><br>
+                                <img src="../icon/Error-32.png"/> <b><font color="red">Something Went Wrong. Try Again.</font></b><br><br>
+                                <button type="button" onclick="Custombox.close();" class="btn btn-default waves-effect waves-light">   OK   </button><br><br>
+                </div>
 
         </div>
         <!-- END wrapper -->
