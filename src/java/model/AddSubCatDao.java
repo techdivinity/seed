@@ -5,6 +5,7 @@
  */
 package model;
 
+import beans.AddSubCatBean;
 import com.DBConnection;
 import com.MD5;
 import java.io.UnsupportedEncodingException;

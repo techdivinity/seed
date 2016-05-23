@@ -19,11 +19,15 @@ function resuilOfPopulateSubCat()
 {
      if(request.readyState==4)
     {  var subcatdrop=document.getElementById("subcat");
+
+        var selected = document.getElementById("cat");
+        var selectedText = selected.options[selected.selectedIndex].text;
         var val=request.responseText;
         var v1=new String(val);
         v1=v1.trim();
         var res = v1.split("/");
         subcatdrop.innerHTML='';
+        subcatdrop.insertAdjacentHTML('beforeend','<option value="" disabled selected>Select Sub Category From '+selectedText+'</option>');
         for(var i=0;i<res.length-1;i++)
         {
             var vals=res[i].split("-");

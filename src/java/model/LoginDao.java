@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package model;
+import beans.LoginBean;
 import com.DBConnection;
 import com.MD5;
 import java.io.UnsupportedEncodingException;

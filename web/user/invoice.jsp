@@ -19,10 +19,11 @@
         <script src="../assets/js/modernizr.min.js"></script>
         
         <script type="text/javascript" src="../js/Item.js"></script>
+        <script type="text/javascript" src="../js/Customer.js"></script>
+        <script type="text/javascript" src="../js/Invoice.js"></script>
         <script type="text/javascript" src="../js/stopBack.js"></script>
         
-        <link rel="stylesheet" type="text/css" href="../css/epoch_styles.css" />
-        <script type="text/javascript" src="../js/epoch_classes.js"></script>
+        <link rel="stylesheet" type="text/css" href="../css/table.css" />
         <script>
             var bas_cal,dp_cal,ms_cal;      
             window.onload = function () {
@@ -69,68 +70,75 @@
                         
                         <jsp:useBean id="test" class="model.CatPopDao"/>
                         <c:set var="alphabet" value="${test.gatOption()}" scope="page" />
+                        <jsp:useBean id="custInfo" class="model.CustPopDao"/>
+                        <c:set var="customer" value="${custInfo.gatCustomer()}" scope="page" />
                                     
-                        		<div class="card-box" >
+                        <div class="card-box" >
                                               
                         			<div class="row" >
                                                     <div class="custom-modal-text text-left" id="addCustSuccess">
-                                                        <form action="AddItem"method="post">
-                                                            <div style="width: 50%;float: left;padding-right: 2px"> 
-                                                                <div class="form-group">
-                                                                    <label for="name">Select Category <font color="red">*</font></label>
-                                                                    <select name="cat" id="cat" onchange="poupateSubCat()" class="form-control" required>
-                                                                        <option value="" disabled selected>---Select Category---</option>
-                                                                        <c:forEach var="item" items="${alphabet}" varStatus="status" step="2">
-                                                                            <option value="${alphabet[status.index ]}">
-                                                                                <c:out value="${alphabet[status.index+1 ]}" />
-                                                                            </option>
-                                                                        </c:forEach>
-                                                                    </select> 
+                                                        <form action=""method="post">
+                                                            
+                                                            <div style="width: 70%;float: left;padding-right: 2px;padding-top: 5px;border-right: 1px solid #CCC"> 
+                                                                <div style="border-bottom: 1px solid #AAA">
+                                                                    <div class="form-group">
+                                                                        <label for="name">Select Customer <font color="red">*</font></label>
+                                                                        <select name="cust" id="cust" onchange="displyCustInfo()" class="form-control" required>
+                                                                            <option value="" disabled selected>---Select Customer---</option>
+                                                                                <c:forEach var="custs" items="${customer}" varStatus="status" step="2">
+                                                                                    <option value="${customer[status.index ]}">
+                                                                                        <c:out value="${customer[status.index+1 ]}" />
+                                                                                    </option>
+                                                                                </c:forEach>
+                                                                        </select>
+                                                                        <table width="100%">
+                                                                            <tr><td><b>Name :</b></td><td id="custName"></td></tr>
+                                                                            <tr><td><b>Address :</b></td><td id="custAdd"></td></tr>
+                                                                            <tr><td><b>City :</b></td><td id="custCity"></td></tr>
+                                                                        </table>
+                                                                    </div>
                                                                 </div>
-                                                            </div>  
-                                                            <div style="width: 50%;float: right;padding-left: 2px">
-                                                                <div class="form-group">
-                                                                    <label for="name">Select Sub Category <font color="red">*</font></label>
-                                                                    <select name="subcat" id="subcat" class="form-control" required>
-                                                                        <option value="" disabled selected>---Select Sub Category---</option>
-                                                                    </select>
+
+                                                                    <div class="form-group">
+                                                                        <label for="name">Select Category <font color="red">*</font></label>
+                                                                        <select name="cat" id="cat"  onchange="poupateSubCat();clrArea()" class="form-control" required>
+                                                                            <option value="" disabled selected>---Select Category---</option>
+                                                                            <c:forEach var="item" items="${alphabet}" varStatus="status" step="2">
+                                                                                <option value="${alphabet[status.index ]}">
+                                                                                    <c:out value="${alphabet[status.index+1 ]}" />
+                                                                                </option>
+                                                                            </c:forEach>
+                                                                        </select> 
+                                                                    </div>
+                                                                    <div class="form-group">
+                                                                        <label for="name">Select Sub Category <font color="red">*</font></label>
+                                                                        <select name="subcat" id="subcat" onchange="showCustomItems()" class="form-control" required>
+                                                                            <option value="" disabled selected>---Select Sub Category---</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>  
+                                                                <div id="itemsArea" style="width: 30%;float: right;padding-left: 2px;">
+
                                                                 </div>
+                                                            
+                                                            <!--<p style="margin: 5px"></p>-->
+                                                            <div style="width: 100%;overflow-x: auto;border-top: 1px solid #AAA;padding-top: 2px" >
+                                                                    <table  id="itemTable" width="100%" class="simple" onclick="calculate()">
+                                                                        <th>SNO</th><th>Name</th><th>Packet Size</th><th>Batch</th><th>MFG DATE</th><th>EXP Date</th><th>Price</th><th>Quantity</th><th>Total Price</th>
+                                                                    </table>
+                                                                <div style="background: #DDD;text-align: right;font-weight: bold;padding-right: 3px;">TOTAL : <span id="totalAmt"></span></div>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label for="name">Name <font color="red">*</font></label>
-                                                                <input type="text" name="name" class="form-control" required/>
-                                                            </div>
-                                                            <div style="width: 50%;float: left;padding-right: 2px">
-                                                                <div class="form-group">
-                                                                    <label for="name">Paket Size</label>
-                                                                    <input type="text" name="pktsize" class="form-control" />
-                                                                </div> 
-                                                                <div class="form-group">
-                                                                    <label for="name">Manufacturing Date</label>
-                                                                    <input type="text" name="mfgdate" id="popup_container" name="price" step="0.01" class="form-control"  readonly="readonly"/>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="name">Price (Per Packet)</label>
-                                                                    <input type="number" name="price" step="0.01" class="form-control" />
-                                                                </div>
-                                                            </div>
-                                                            <div style="width: 50%;float: right;padding-left: 2px">
-                                                                <div class="form-group">
-                                                                    <label for="name">Batch</label>
-                                                                    <input type="text" name="batch" class="form-control" />
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="name">Expiring Date</label>
-                                                                    <input type="text" name="expdate" id="popup_container1" name="price" step="0.01" class="form-control"  readonly="readonly"/>
-                                                                </div>
-                                                                <div class="form-group">
-                                                                    <label for="name">Total Qnty(In Packets)</label>
-                                                                    <input type="number" name="qnty" min="0" class="form-control" />
-                                                                </div>
-                                                            </div>
+
+
+                                                                    <br><br>
+                                                                    <button type="reset" style="float: right" class="btn btn-danger waves-effect waves-light m-l-10">Reset</button>
+                                                                    <button type="submit" style="float: right"  class="btn btn-default waves-effect waves-light">Save</button>
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
                                                         
-                                                            <button type="reset" style="float: right" class="btn btn-danger waves-effect waves-light m-l-10">Reset</button>
-                                                            <button type="submit" style="float: right"  class="btn btn-default waves-effect waves-light">Save</button>
                                                             
                                                         </form>
                                                     </div>

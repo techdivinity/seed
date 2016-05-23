@@ -1,0 +1,22 @@
+.simple {
+    border: 1px dotted #AAA;
+    overflow-x: scroll;
+}
+.simple td
+{
+    text-align: left;
+    padding: 2px
+}  
+.simple th
+{
+    text-align: left;
+    background: #DDD;
+    padding: 2px
+}
+.simple input[type="number"]
+{
+    width: 100%; 
+     box-sizing: border-box;
+     -webkit-box-sizing:border-box;
+     -moz-box-sizing: border-box;
+}

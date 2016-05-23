@@ -5,9 +5,10 @@
  */
 package servlet;
 
-import beans.AddSubCatBean;
+import com.ArrayListOpration;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,32 +19,24 @@ import model.*;
  *
  * @author divinity
  */
-public class AddSubCategory extends HttpServlet {
+public class CustomerList extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String catID = request.getParameter("cat");
-        String subCatName = request.getParameter("subcat");
         try{
-            AddSubCatBean bean = new AddSubCatBean();
-            bean.setCatID(catID);
-            bean.setSubCatName(subCatName);
+        CustomeListDao dao = new CustomeListDao();
+        ArrayList<String[]> custInfo=dao.getCustInfo();
 
-            AddSubCatDao dao=new AddSubCatDao();
-            String resultMsg = dao.addSubCat(bean);
-            
-            out.print(resultMsg);
-        
+            request.setAttribute("custInfo", custInfo);
+            request.getRequestDispatcher("customerlist.jsp").forward(request, response);
         
         }catch(Exception e)
         {
-            
+            e.printStackTrace(new java.io.PrintWriter(out));
         }
-        
     }
 
-    
 
 }

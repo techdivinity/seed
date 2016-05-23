@@ -5,9 +5,9 @@
  */
 package servlet;
 
-import beans.AddSubCatBean;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -18,25 +18,21 @@ import model.*;
  *
  * @author divinity
  */
-public class AddSubCategory extends HttpServlet {
-
-    @Override
+public class ShowCustInfo extends HttpServlet {
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String catID = request.getParameter("cat");
-        String subCatName = request.getParameter("subcat");
+        String custID=request.getParameter("custID");
         try{
-            AddSubCatBean bean = new AddSubCatBean();
-            bean.setCatID(catID);
-            bean.setSubCatName(subCatName);
-
-            AddSubCatDao dao=new AddSubCatDao();
-            String resultMsg = dao.addSubCat(bean);
             
-            out.print(resultMsg);
-        
-        
+            ShowCustInfoDao dao=new ShowCustInfoDao();
+            ArrayList<String> custInfo=dao.gatCustInfo(custID);
+            for(int i=0;i<custInfo.size();i++)
+            {
+                out.print(custInfo.get(i)+"/");
+            }
+          
         }catch(Exception e)
         {
             
@@ -45,5 +41,4 @@ public class AddSubCategory extends HttpServlet {
     }
 
     
-
 }
