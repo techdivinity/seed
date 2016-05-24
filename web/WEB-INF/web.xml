@@ -17,6 +17,14 @@
         <servlet-class>servlet.AddCategory</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>Customer</servlet-name>
+        <servlet-class>servlet.Customer</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddCust</servlet-name>
+        <servlet-class>servlet.AddCust</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>Category</servlet-name>
         <servlet-class>servlet.Category</servlet-class>
     </servlet>
@@ -29,24 +37,20 @@
         <servlet-class>servlet.SubCatDropPopulate</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>CustomerList</servlet-name>
+        <servlet-class>servlet.CustomerList</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>AddItem</servlet-name>
         <servlet-class>servlet.AddItem</servlet-class>
     </servlet>
-    <servlet>
+     <servlet>
         <servlet-name>ShowCustInfo</servlet-name>
         <servlet-class>servlet.ShowCustInfo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShowCustomItems</servlet-name>
         <servlet-class>servlet.ShowCustomItems</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>CustomerList</servlet-name>
-        <servlet-class>servlet.CustomerList</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>Customer</servlet-name>
-        <servlet-class>servlet.Customer</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -68,6 +72,11 @@
         <servlet-name>Category</servlet-name>
         <url-pattern>/user/Category</url-pattern>
     </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>AddCust</servlet-name>
+        <url-pattern>/AddCust</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>CatDropPopulate</servlet-name>
         <url-pattern>/CatDropPopulate</url-pattern>
@@ -76,7 +85,7 @@
         <servlet-name>SubCatDropPopulate</servlet-name>
         <url-pattern>/SubCatDropPopulate</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
+       <servlet-mapping>
         <servlet-name>AddItem</servlet-name>
         <url-pattern>/user/AddItem</url-pattern>
     </servlet-mapping>
