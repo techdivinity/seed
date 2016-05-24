@@ -64,7 +64,7 @@
                         <!-- Page-Title -->
                         <div class="row" >
                             <div class="col-sm-12">
-                                <h4 class="page-title"> Add Item</h4><br>
+                                <h4 class="page-title"> Invoice</h4><br>
                             </div>
                         </div>
                         
