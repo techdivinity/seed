@@ -1,3 +1,4 @@
+<%@page import="com.IdCounter"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -24,15 +25,7 @@
         <script type="text/javascript" src="../js/stopBack.js"></script>
         
         <link rel="stylesheet" type="text/css" href="../css/table.css" />
-        <script>
-            var bas_cal,dp_cal,ms_cal;      
-            window.onload = function () {
-            dp_cal  = new Epoch('epoch_popup','popup',document.getElementById('popup_container'));
-            dp_cal  = new Epoch('epoch_popup','popup',document.getElementById('popup_container1'));
-            $('#link').click();
-            };
-
-            </script>
+        
             
     </head>
     <body class="fixed-left" >
@@ -67,7 +60,9 @@
                                 <h4 class="page-title"> Invoice</h4><br>
                             </div>
                         </div>
-                        
+                        <a id="generate">Generate</a>
+                        <p><code id="output"></code></p>	
+                        <%= IdCounter.nextId()%>
                         <jsp:useBean id="test" class="model.CatPopDao"/>
                         <c:set var="alphabet" value="${test.gatOption()}" scope="page" />
                         <jsp:useBean id="custInfo" class="model.CustPopDao"/>

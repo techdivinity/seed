@@ -75,6 +75,7 @@
                         			<div class="row" >
                                                     <div class="custom-modal-text text-left" id="addCustSuccess">
                                                         <form action="AddItem"method="post">
+                                                            <div style="display:inline-block;width: 100%">
                                                             <div style="width: 50%;float: left;padding-right: 2px"> 
                                                                 <div class="form-group">
                                                                     <label for="name">Select Category <font color="red">*</font></label>
@@ -96,6 +97,7 @@
                                                                     </select>
                                                                 </div>
                                                             </div>
+                                                    </div>
                                                             <div class="form-group">
                                                                 <label for="name">Name <font color="red">*</font></label>
                                                                 <input type="text" name="name" class="form-control" required/>
