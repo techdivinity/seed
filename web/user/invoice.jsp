@@ -1,4 +1,4 @@
-<%@page import="com.IdCounter"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -25,7 +25,19 @@
         <script type="text/javascript" src="../js/stopBack.js"></script>
         
         <link rel="stylesheet" type="text/css" href="../css/table.css" />
-        
+        <script>
+                  
+            window.onload = function () {
+            $('#link').click();
+            
+            document.getElementById("discount").addEventListener("mousewheel", function(evt){ evt.preventDefault(); });
+            document.getElementById("vat").addEventListener("mousewheel", function(evt){ evt.preventDefault(); });
+            
+            };
+            
+            
+
+            </script>
             
     </head>
     <body class="fixed-left" >
@@ -43,8 +55,7 @@
                     <div class="container">
                         <c:choose>
                             <c:when test= "${sessionScope.msg=='SUCCESS'}">
-                                <a id="link" href="#success-modal"  data-animation="fadein" data-plugin="custommodal" 
-                                       data-overlaySpeed="200" data-overlayColor="#36404a" ></a>
+                                <a id="link" onclick="window.open('showInvoice?i=${sessionScope.val}&d=n', 'newwindow', 'scrollbars=yes, width='+($(window).width()-($(window).width()*0.1))+', height='+($(window).height()-($(window).height()*0.1))+',top='+$(window).height()*0.05+',left='+$(window).width()*0.05+''); return false;"></a>
                             </c:when>
                             <c:when test= "${sessionScope.msg=='ERROR'}">
                                 <a id="link" href="#error-modal"  data-animation="fadein" data-plugin="custommodal" 
@@ -52,7 +63,7 @@
                             </c:when>
                             <c:otherwise></c:otherwise>
                         </c:choose>
-                                <c:remove var="msg" scope="session" />
+                                <c:remove var="msg" scope="session" /><c:remove var="val" scope="session" />
 
                         <!-- Page-Title -->
                         <div class="row" >
@@ -60,9 +71,6 @@
                                 <h4 class="page-title"> Invoice</h4><br>
                             </div>
                         </div>
-                        <a id="generate">Generate</a>
-                        <p><code id="output"></code></p>	
-                        <%= IdCounter.nextId()%>
                         <jsp:useBean id="test" class="model.CatPopDao"/>
                         <c:set var="alphabet" value="${test.gatOption()}" scope="page" />
                         <jsp:useBean id="custInfo" class="model.CustPopDao"/>
@@ -72,11 +80,12 @@
                                               
                         			<div class="row" >
                                                     <div class="custom-modal-text text-left" id="addCustSuccess">
-                                                        <form action=""method="post">
+                                                        <form action="Invoice"method="post" onsubmit="return proceedToNext()">
                                                             
                                                             <div style="width: 70%;float: left;padding-right: 2px;padding-top: 5px;border-right: 1px solid #CCC"> 
                                                                 <div style="border-bottom: 1px solid #AAA">
                                                                     <div class="form-group">
+                                                                        
                                                                         <label for="name">Select Customer <font color="red">*</font></label>
                                                                         <select name="cust" id="cust" onchange="displyCustInfo()" class="form-control" required>
                                                                             <option value="" disabled selected>---Select Customer---</option>
@@ -90,6 +99,8 @@
                                                                             <tr><td><b>Name :</b></td><td id="custName"></td></tr>
                                                                             <tr><td><b>Address :</b></td><td id="custAdd"></td></tr>
                                                                             <tr><td><b>City :</b></td><td id="custCity"></td></tr>
+                                                                            <tr><td><b>TIN :</b></td><td id="custTIN"></td></tr>
+                                                                            <tr><td><b>CST :</b></td><td id="custCST"></td></tr>
                                                                         </table>
                                                                     </div>
                                                                 </div>
@@ -117,11 +128,19 @@
                                                                 </div>
                                                             
                                                             <!--<p style="margin: 5px"></p>-->
-                                                            <div style="width: 100%;overflow-x: auto;border-top: 1px solid #AAA;padding-top: 2px" >
+                                                            <div id="tableDiv" style="width: 100%;overflow-x: auto;border-top: 1px solid #AAA;padding-top: 2px" >
                                                                     <table  id="itemTable" width="100%" class="simple" onclick="calculate()">
                                                                         <th>SNO</th><th>Name</th><th>Packet Size</th><th>Batch</th><th>MFG DATE</th><th>EXP Date</th><th>Price</th><th>Quantity</th><th>Total Price</th>
                                                                     </table>
-                                                                <div style="background: #DDD;text-align: right;font-weight: bold;padding-right: 3px;">TOTAL : <span id="totalAmt"></span></div>
+                                                                <div style="background: #FFF;text-align: right;font-weight: bold;padding-right: 3px;">
+                                                                    <table style="float: right">
+                                                                        <tr><td>Sub-total : </td><td><span name="totalAmount" id="totalAmt" ></span></td></tr>
+                                                                        <tr><td>Discount (%) : </td><td><input type="number" value="0" step="0.01" id="discount" name="discount" min="0" max="99.99" required class="smallBox" onkeyup="calFinalTotal()" onclick="calFinalTotal()"/></td></tr>
+                                                                        <tr><td>Vat (%) : </td><td><input type="number" value="0" step="0.01" id="vat" name="vat" min="0" max="99.99" required class="smallBox" onkeyup="calFinalTotal()" onclick="calFinalTotal()"/></td></tr>
+                                                                        <tr style="background: #DDD;font-size: 15px;"><td>TOTAL :</td><td><span name="finalTotal" id="finalToatl"></span></td></tr>
+                                                                    </table>
+                                                                     
+                                                                </div>
                                                             </div>
 
 
@@ -151,7 +170,7 @@
                 </div> <!-- content -->
 
                 <jsp:include page="footer.jsp"/>
-
+                
             </div>
             <!-- Modal -->
                 <div id="success-modal" class="modal-demo" >

@@ -18,11 +18,11 @@ import javax.naming.NamingException;
  *
  * @author divinity
  */
-public class CatNSubCatDao 
+public class InvoiceListDao 
 {
-    public ArrayList<ArrayList<String>> getCatInfo() throws NamingException, SQLException
+    public ArrayList<String[]> getInvoices() throws NamingException, SQLException
     {
-        ArrayList<ArrayList<String>> cats=new ArrayList<ArrayList<String>>();
+        ArrayList<String[]> invoices=new ArrayList<String[]>();
         Connection con = null;
         Statement stmt1 = null;
         ResultSet rs1 = null;
@@ -31,32 +31,23 @@ public class CatNSubCatDao
         
         try
          {
+             String[] arr;
+         
             con = DBConnection.createConnection();con.setAutoCommit(false);
             stmt1 = con.createStatement(); 
-            rs1 = stmt1.executeQuery("select * from category"); 
+            rs1 = stmt1.executeQuery("SELECT * FROM invoice, addcust WHERE invoice.custID = addcust.custID ORDER BY `invoice`.`invoiceID` ASC"); 
 
             while(rs1.next()) 
              {
-              cats.add(new ArrayList<String>());
-              cats.get(cats.size()-1).add(rs1.getString("name"));
+                 arr=new String[4];
+              arr[0]=String.format("%06d", Long.parseLong(rs1.getString("invoiceID")));
+              arr[1]=rs1.getString("FirstName")+" "+rs1.getString("LastName");
+              arr[2]=rs1.getString("finalTotal");
+              arr[3]=rs1.getString("createdDate").split(" ")[0];
+              invoices.add(arr);
              }
             stmt1.close();rs1.close();
-            
-            String sql2="SELECT name FROM subcategory WHERE catID in (select catID from category where name=?)";
-            
-            for(int i=0;i<cats.size();i++)
-            {   
-                stmt2 = con.prepareStatement(sql2);
-                stmt2.setString(1,cats.get(i).get(0));
-                rs2 = stmt2.executeQuery(); 
-                while(rs2.next()) 
-                {
-                 cats.get(i).add(rs2.getString("name"));
-                }
-                stmt2.close();rs2.close();
-            }
-            
-            
+                       
             con.commit();
             con.close();
             
@@ -68,7 +59,7 @@ public class CatNSubCatDao
             }catch(Exception e1){}
             
          }
-        return cats;
+        return invoices;
     }
     
 }

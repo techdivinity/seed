@@ -44,13 +44,33 @@
         <servlet-name>AddItem</servlet-name>
         <servlet-class>servlet.AddItem</servlet-class>
     </servlet>
-     <servlet>
+    <servlet>
         <servlet-name>ShowCustInfo</servlet-name>
         <servlet-class>servlet.ShowCustInfo</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShowCustomItems</servlet-name>
         <servlet-class>servlet.ShowCustomItems</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>Invoice</servlet-name>
+        <servlet-class>servlet.Invoice</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showInvoice</servlet-name>
+        <servlet-class>servlet.showInvoice</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InvoiceList</servlet-name>
+        <servlet-class>servlet.InvoiceList</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AllProducts</servlet-name>
+        <servlet-class>servlet.AllProducts</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditItem</servlet-name>
+        <servlet-class>servlet.EditItem</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>login</servlet-name>
@@ -72,7 +92,6 @@
         <servlet-name>Category</servlet-name>
         <url-pattern>/user/Category</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>AddCust</servlet-name>
         <url-pattern>/AddCust</url-pattern>
@@ -85,7 +104,7 @@
         <servlet-name>SubCatDropPopulate</servlet-name>
         <url-pattern>/SubCatDropPopulate</url-pattern>
     </servlet-mapping>
-       <servlet-mapping>
+    <servlet-mapping>
         <servlet-name>AddItem</servlet-name>
         <url-pattern>/user/AddItem</url-pattern>
     </servlet-mapping>
@@ -104,6 +123,26 @@
     <servlet-mapping>
         <servlet-name>Customer</servlet-name>
         <url-pattern>/user/Customer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>Invoice</servlet-name>
+        <url-pattern>/user/Invoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showInvoice</servlet-name>
+        <url-pattern>/user/showInvoice</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InvoiceList</servlet-name>
+        <url-pattern>/user/InvoiceList</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AllProducts</servlet-name>
+        <url-pattern>/user/AllProducts</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditItem</servlet-name>
+        <url-pattern>/user/EditItem</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

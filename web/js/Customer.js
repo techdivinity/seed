@@ -26,6 +26,8 @@ function resuilOfDisplayCustInfo()
         document.getElementById("custName").innerHTML=res[0]+" "+res[1];
         document.getElementById("custAdd").innerHTML=res[2];
         document.getElementById("custCity").innerHTML=res[3];
+        document.getElementById("custTIN").innerHTML=res[4];
+        document.getElementById("custCST").innerHTML=res[5];
 
     }  
 }
@@ -119,26 +121,36 @@ function resultOFAddItemToInvoice()
         var cell7 = row.insertCell(6);
         var cell8 = row.insertCell(7);
         var cell9 = row.insertCell(8);
+        var cell10 = row.insertCell(9);
         
         cell1.innerHTML = rowCount;
-        cell2.innerHTML = res[1];
+        cell2.innerHTML = res[1]+'<input type="hidden" name="itemID" value="'+res[0]+'"/>';
         cell3.innerHTML = res[2];
         cell4.innerHTML = res[3];
         cell5.innerHTML = res[4];
         cell6.innerHTML = res[5];
-        cell7.innerHTML = '<input type="number"  class="rs" step="0.01" required>';
-        cell8.innerHTML = '<input type="number" class="qnty"  required>';
+        cell7.innerHTML = '<input type="number" name="price"  class="rs" step="0.01" required>';
+        cell8.innerHTML = '<input type="number" name="qnty" class="qnty"  required>';
         cell9.innerHTML = '';
-        
-        
-        for(var i=0;i<res.length-1;i++)
-        {
-//            var vals=res[i].split("~");
-//            alert(res[i]);
-//            items.insertAdjacentHTML('beforeend','<a  style="cursor:pointer" onclick="addItemToInvoice(\''+vals[0]+'\')" >'+vals[1]+'</a><br>');
-        }
-        
-        
-
+        cell10.innerHTML = '<a style="cursor:pointer" onclick="deleteRow(this)"><img src="../icon/delete.png"/></a>';
+     
     }  
+}
+function deleteRow(o)
+{
+    var v=o.parentNode.parentNode.rowIndex;
+    var table = document.getElementById("itemTable");
+        table.deleteRow(v);
+         index();
+}
+function index()
+{
+    var table = document.getElementById("itemTable");  
+    var rowCount = table.rows.length;
+    var sno=0;
+    for(var i=1;i<rowCount;i++)
+    {
+            table.rows[i].cells[0].innerHTML= ++sno;
+    }
+    
 }

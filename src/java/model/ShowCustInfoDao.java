@@ -42,6 +42,8 @@ public class ShowCustInfoDao
            custInfo.add(resultSet.getString("LastName"));
            custInfo.add(resultSet.getString("Address"));
            custInfo.add(resultSet.getString("City"));
+           custInfo.add(resultSet.getString("TINNO"));
+           custInfo.add(resultSet.getString("CSTNO"));
          }
         
         statement.close();resultSet.close();con.close();

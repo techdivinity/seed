@@ -44,7 +44,7 @@ public class ShowItemDetailsDao {
            itemInfo.add(resultSet.getString("mfgDate"));
            itemInfo.add(resultSet.getString("expDate"));
            itemInfo.add(resultSet.getString("price"));
-//           itemInfo.add(resultSet.getString("totalQnty"));
+           itemInfo.add(resultSet.getString("totalQnty"));
          }
         
         statement.close();resultSet.close();con.close();
